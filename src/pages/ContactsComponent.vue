@@ -6,15 +6,16 @@
           <img src="~/src/assets/unnamed.png" alt="Logo">
           <h2 style="color: #ea4335; margin-right: 10px;">CPC</h2>
           <h2 style="color: #4285f4;">SAFETY CENTRAL</h2>
-          <div class="row" style="margin-left: 500px;">
+          <div class="row" style="margin-left: 700px;">
             <q-btn type="button" v-if="userType === 'user'" class="btn btn-primary" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Student" />
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Student" />
 
-              <q-btn type="button" v-if="userType === 'teacher'" color="green" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Teacher" />
+            <q-btn type="button" v-if="userType === 'teacher'" color="green" icon="person"
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Teacher" />
 
             <q-btn type="button" v-if="userType === 'admin'" color="purple" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Admin" />
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Admin" />
+              
             <q-btn type="button" class="btn btn-danger" @click="logout" style="width: 155px; border-radius: 30px;"> <svg
                 xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-walking"
                 viewBox="0 0 16 16">
@@ -64,7 +65,8 @@
                         d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                     </svg></i>Contacts</router-link>
               </li>
-              <li class="nav-item list-unstyled" v-if="userType === 'admin' || userType === 'teacher'" style="margin-right: 50px;">
+              <li class="nav-item list-unstyled" v-if="userType === 'admin' || userType === 'teacher'"
+                style="margin-right: 50px;">
                 <router-link to="/StudentDirectoryComponent" class="nav-link text-white"
                   @click="setActiveTab('StudentDirectoryComponent')"
                   :class="{ active: activeTab === 'StudentDirectoryComponent' }"><i class="mx-1"><svg
@@ -87,14 +89,24 @@
               </li>
               <li class="nav-item list-unstyled" v-if="userType === 'admin'">
                 <router-link to="/CreateTeacherAccount" class="nav-link text-white"
-                  @click="setActiveTab('CreateTeacherAccount')" :class="{ active: activeTab === 'CreateTeacherAccount' }"><i
-                    class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  @click="setActiveTab('CreateTeacherAccount')"
+                  :class="{ active: activeTab === 'CreateTeacherAccount' }"><i class="mx-2"><svg
+                      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-person-fill-add" viewBox="0 0 16 16">
                       <path
                         d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                       <path
                         d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4" />
                     </svg></i>Create Teacher Account</router-link>
+              </li>
+              <li class="nav-item list-unstyled" v-if="userType === 'user'">
+                <router-link to="/ViewProfile" class="nav-link text-white" @click="setActiveTab('ViewProfile')"
+                  :class="{ active: activeTab === 'ViewProfile' }"><i class="mx-2"><svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                      <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                    </svg></i>View Profile</router-link>
               </li>
             </q-tabs>
           </div>
@@ -113,25 +125,25 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 export default {
-  data () {
+  data() {
     return {
       activeTab: 'ContactsComponent'
     }
   },
   methods: {
-    setActiveTab (ContactsComponent) {
+    setActiveTab(ContactsComponent) {
       this.activeTab = ContactsComponent
     },
-    logout () {
+    logout() {
       simulateLogout()
       this.$router.push({ name: 'LoginComponent' })
     },
   },
   computed: {
-    userFirstName () {
+    userFirstName() {
       return localStorage.getItem('userFirstName')
     },
-    userType () {
+    userType() {
       return localStorage.getItem('userType')
     }
   }
@@ -179,5 +191,4 @@ img {
   background-color: #595959;
   color: #ebebeb;
   border-radius: 10px;
-}
-</style>
+}</style>

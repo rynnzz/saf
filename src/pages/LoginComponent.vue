@@ -20,7 +20,7 @@
           <label for="password"></label><br>
           <input v-model="password" type="password" id="password" class="password" name="password"
             placeholder="Enter Password"><br><br>
-          <div v-if="errorMessage" class="text-danger" icon="exclamation">{{ errorMessage }}</div>
+          <div v-if="errorMessage" class="text-danger">{{ errorMessage }}</div>
           <div class="login-button">
             <q-btn type="submit" color="blue" icon="eco" style="width: 150px; height: 40px" label="Login" />
           </div>

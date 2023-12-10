@@ -6,7 +6,7 @@
           <img src="~/src/assets/unnamed.png" alt="Logo">
           <h2 style="color: #ea4335; margin-right: 10px;">CPC</h2>
           <h2 style="color: #4285f4;">SAFETY CENTRAL</h2>
-          <div class="row" style="margin-left: 500px;">
+          <div class="row" style="margin-left: 700px;">
               <q-btn type="button" v-if="userType === 'teacher'" color="green" icon="person"
               style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Teacher" />
 
@@ -118,7 +118,7 @@
               <td>{{ user.lname }} , {{ user.fname }}</td>
               <td>{{ user.course }} {{ user.yr_and_sec }}</td>
               <td><q-btn type="button"
-                  style="  padding: 6px 12px; background: rgb(31, 32, 35); border: 1px solid rgb(60, 63, 68); border-radius: 20px; color: rgb(247, 248, 248); appearance: none; transition: border 0.15s ease 0s; width: 150px; align-items: center;"
+                  style="  padding: 6px 12px; background: rgb(31, 32, 35); border: 1px solid rgb(60, 63, 68); border-radius: 20px; color: rgb(247, 248, 248); appearance: none; transition: border 0.15s ease 0s; width: 160px; align-items: center;"
                   label="View Details" @click="viewDetails(user)" /> </td>
             </tr>
           </table>

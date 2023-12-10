@@ -6,7 +6,7 @@
           <img src="~/src/assets/unnamed.png" alt="Logo">
           <h2 style="color: #ea4335; margin-right: 10px;">CPC</h2>
           <h2 style="color: #4285f4;">SAFETY CENTRAL</h2>
-          <div class="row" style="margin-left: 500px;">
+          <div class="row" style="margin-left: 700px;">
             <q-btn type="button" color="purple" icon="person"
               style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Admin" />
             <q-btn type="button" class="btn btn-danger" @click="logout" style="width: 155px; border-radius: 30px;"> <svg

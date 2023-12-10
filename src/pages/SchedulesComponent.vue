@@ -6,15 +6,15 @@
           <img src="~/src/assets/unnamed.png" alt="Logo">
           <h2 style="color: #ea4335; margin-right: 10px;">CPC</h2>
           <h2 style="color: #4285f4;">SAFETY CENTRAL</h2>
-          <div class="row" style="margin-left: 500px;">
+          <div class="row" style="margin-left: 700px;">
             <q-btn type="button" v-if="userType === 'user'" class="btn btn-primary" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Student" />
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Student" />
 
-              <q-btn type="button" v-if="userType === 'teacher'" color="green" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Teacher" />
+            <q-btn type="button" v-if="userType === 'teacher'" color="green" icon="person"
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Teacher" />
 
             <q-btn type="button" v-if="userType === 'admin'" color="purple" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Admin" />
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Admin" />
 
             <q-btn type="button" class="btn btn-danger" @click="logout" style="width: 155px; border-radius: 30px;"> <svg
                 xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-walking"
@@ -65,7 +65,8 @@
                         d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                     </svg></i>Contacts</router-link>
               </li>
-              <li class="nav-item list-unstyled" v-if="userType === 'admin' || userType === 'teacher'" style="margin-right: 50px;">
+              <li class="nav-item list-unstyled" v-if="userType === 'admin' || userType === 'teacher'"
+                style="margin-right: 50px;">
                 <router-link to="/StudentDirectoryComponent" class="nav-link text-white"
                   @click="setActiveTab('StudentDirectoryComponent')"
                   :class="{ active: activeTab === 'StudentDirectoryComponent' }"><i class="mx-1"><svg
@@ -87,7 +88,8 @@
                     </svg></i>Compose</router-link>
               </li>
               <li class="nav-item list-unstyled" v-if="userType === 'admin'">
-                <router-link to="/CreateTeacherAccount" class="nav-link text-white" @click="setActiveTab('CreateTeacherAccount')"
+                <router-link to="/CreateTeacherAccount" class="nav-link text-white"
+                  @click="setActiveTab('CreateTeacherAccount')"
                   :class="{ active: activeTab === 'CreateTeacherAccount' }"><i class="mx-2"><svg
                       xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-person-fill-add" viewBox="0 0 16 16">
@@ -96,6 +98,15 @@
                       <path
                         d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4" />
                     </svg></i>Create Teacher Account</router-link>
+              </li>
+              <li class="nav-item list-unstyled" v-if="userType === 'user'">
+                <router-link to="/ViewProfile" class="nav-link text-white" @click="setActiveTab('ViewProfile')"
+                  :class="{ active: activeTab === 'ViewProfile' }"><i class="mx-2"><svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                      <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                    </svg></i>View Profile</router-link>
               </li>
             </q-tabs>
           </div>
@@ -120,7 +131,7 @@
 
                 <q-btn v-if="userType === 'admin'" @click="editSchedule(schedule)" color="orange"
                   style="margin: 20px; align-items: center;">Edit</q-btn>
-                <q-btn v-if="userType === 'admin'" @click="deleteSchedule(schedule.id)" color="danger"
+                <q-btn v-if="userType === 'admin'" @click="deleteSchedule(schedule)" color="danger"
                   style="align-items: center;">Delete</q-btn>
                 <q-separator dark style="margin: 10px;" />
               </div>
@@ -133,7 +144,7 @@
   <q-dialog v-model="isDeleteConfirmationModalVisible" persistent>
     <q-card class="custom-card">
       <q-card-section>
-        <q-card-title class="text-h6">Confirm Deletion</q-card-title>
+        <h2 class="text-h6">Confirm Deletion</h2>
       </q-card-section>
 
       <q-card-section>
@@ -152,16 +163,24 @@
 import { simulateLogout } from 'src/router/auth.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import { ScheduleService } from 'src/store/ScheduleService.js'
 
 export default {
   data() {
     return {
       activeTab: 'SchedulesComponent',
-      schedules: [],
       isDeleteConfirmationModalVisible: false,
-      deletingScheduleId: null,
+      schedules: [],
+      isEditModalVisible: false,
+      scheduleToDeleteId: null,
+      editedSchedule: {
+        id: '',
+        content: '',
+        date: ''
+      },
     };
+  },
+  created() {
+    this.getSchedules()
   },
   methods: {
     setActiveTab(SchedulesComponent) {
@@ -173,56 +192,149 @@ export default {
     },
     async getSchedules() {
       try {
+        const response = await fetch('http://localhost/api/schedule.php?action=getSchedules');
 
-        return ScheduleService.getSchedules();
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
+        const data = await response.json();
+        console.log('API Response:', data);
+        this.schedules = data;
       } catch (error) {
-
-        console.error('Error fetching schedules', error);
-
-        return [];
+        console.error('Error fetching Schedules', error);
       }
     },
-    updateSchedules() {
-      this.schedules = ScheduleService.getSchedules();
-    },
-    deleteSchedule(scheduleId) {
-      this.deletingScheduleId = scheduleId;
+
+    deleteschedule(schedule) {
+      this.scheduleToDeleteId = schedule.id;
       this.isDeleteConfirmationModalVisible = true;
     },
 
     cancelDelete() {
-      this.deletingScheduleId = null;
       this.isDeleteConfirmationModalVisible = false;
     },
 
-    confirmDelete() {
+    async confirmDelete() {
       try {
-        ScheduleService.deleteSchedule(this.deletingScheduleId);
-        window.location.reload();
-        this.updateSchedules();
-        this.isDeleteConfirmationModalVisible = false;
+        console.log('Deleting schedule with ID:', this.scheduleToDeleteId);
+        // Make a request to delete the schedule
+        const response = await fetch('http://localhost/api/schedule.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'deleteSchedule',
+            id: this.scheduleToDeleteId,
+          }),
+        });
+        console.log('Response:', response);
+        if (response.ok) {
+          // Remove the deleted schedule from the local data
+          this.schedules = this.schedules.filter(a => a.id !== this.scheduleToDeleteId);
+
+          // Reset variables
+          this.scheduleToDeleteId = null;
+          this.isDeleteConfirmationModalVisible = false;
+        } else {
+          // Handle error response
+          try {
+            const errorMessage = await response.json();
+            console.error('Error deleting schedule:', errorMessage);
+          } catch (error) {
+            console.error('Error deleting schedule', error);
+          }
+        }
       } catch (error) {
-        console.error('Error deleting Schedule', error);
-        this.isDeleteConfirmationModalVisible = false;
+        console.error('Error deleting schedule', error);
       }
     },
+
+    editSchedule(schedule) {
+      this.editedSchedule = {
+        id: schedule.id,
+        content: schedule.content,
+        date: schedule.date,
+      };
+      this.isEditModalVisible = true;
+    },
+    cancelEdit() {
+      this.editedSchedule.id = null;
+      this.editedSchedule.content = '';
+      this.editedSchedule.date = ''
+      this.isEditModalVisible = false;
+    },
+
+    async saveChanges() {
+      try {
+        const response = await fetch('http://localhost/api/schedule.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'updateSchedule',
+            id: this.editedSchedule.id,
+            content: this.editedSchedule.content,
+            date: this.editedSchedule.date,
+          }),
+        });
+
+
+        if (response.ok) {
+
+          const index = this.schedules.findIndex(a => a.id === this.editedSchedule.id);
+          if (index !== -1) {
+            this.schedules.splice(index, 1, {
+              id: this.editedSchedule.id,
+              content: this.editedSchedule.content,
+              date: this.editedSchedule.date,
+            });
+          }
+
+          this.isEditModalVisible = false;
+        } else {
+          try {
+            const errorMessage = await response.json();
+            console.error('Error updating Schedule:', errorMessage);
+          } catch (error) {
+            console.error('Error updating Schedule', error);
+          }
+        }
+      } catch (error) {
+        console.error('Error updating Schedule', error);
+      }
+    }
+
   },
   computed: {
     userFirstName() {
-      return localStorage.getItem('userFirstName');
+      return localStorage.getItem('userFirstName')
     },
     userType() {
       return localStorage.getItem('userType')
     },
     computedSchedules() {
-      return ScheduleService.getSchedules();
+      return this.schedules.map(schedule => {
+        // Format the date using the Date object
+        const formattedDate = new Date(schedule.date).toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+        });
+
+        // Return the schedule with the formatted date
+        return {
+          ...schedule,
+          date: formattedDate,
+        };
+      }).slice().reverse();
     },
+
   },
-  created() {
-    this.updateSchedules();
-  }
 }
+
 </script>
 
 
@@ -301,5 +413,5 @@ img {
   background-color: #595959;
   color: #ebebeb;
   border-radius: 10px;
-}
-</style>
+
+}</style>

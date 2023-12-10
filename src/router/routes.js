@@ -60,6 +60,18 @@ const routes = [
     }
   },
   {
+    path: '/ViewProfile',
+    name: 'ViewProfile',
+    component: () => import('src/pages/ViewProfile.vue'),
+    beforeEnter: (to, from, next) => {
+      if (checkIfUserIsAuthenticated()) {
+        next();
+      } else {
+        next('/');
+      }
+    }
+  },
+  {
     path: '/StudentDirectoryComponent',
     name: 'StudentDirectoryComponent',
     component: () => import('src/pages/StudentDirectoryComponent.vue'),

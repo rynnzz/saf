@@ -6,7 +6,7 @@
           <img src="~/src/assets/unnamed.png" alt="Logo">
           <h2 style="color: #ea4335; margin-right: 10px;">CPC</h2>
           <h2 style="color: #4285f4;">SAFETY CENTRAL</h2>
-          <div class="row" style="margin-left: 500px;">
+          <div class="row" style="margin-left: 700px;">
             <q-btn type="button" color="purple" icon="person"
               style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Admin" />
             <q-btn type="button" class="btn btn-danger" @click="logout" style="width: 155px; border-radius: 30px;"> <svg
@@ -114,8 +114,7 @@
               <option value="Schedule">Schedule</option>
               <option value="Events">Events</option>
             </select>
-            <input v-model="date" type="text" placeholder="Date Posted" id="date" class="date" name="date"
-              onfocus="(this.type='date')">
+            <input v-model="date" type="date" placeholder="Date Posted" id="date" class="date" name="date">
           </q-card>
             <q-btn @click="postContent" color="blue"
               style="margin-top: 30px; width: 140px; font-family: 'Product-Sans Medium', sans-serif;"><i

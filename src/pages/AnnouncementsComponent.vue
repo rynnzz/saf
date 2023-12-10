@@ -6,15 +6,15 @@
           <img src="~/src/assets/unnamed.png" alt="Logo">
           <h2 style="color: #ea4335; margin-right: 10px;">CPC</h2>
           <h2 style="color: #4285f4;">SAFETY CENTRAL</h2>
-          <div class="row" style="margin-left: 500px;">
+          <div class="row" style="margin-left: 700px;">
             <q-btn type="button" v-if="userType === 'user'" class="btn btn-primary" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Student" />
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Student" />
 
-              <q-btn type="button" v-if="userType === 'teacher'" color="green" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Teacher" />
+            <q-btn type="button" v-if="userType === 'teacher'" color="green" icon="person"
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Teacher" />
 
             <q-btn type="button" v-if="userType === 'admin'" color="purple" icon="person"
-              style="width: 170px; border-radius: 10px; margin-right: 15px;" label="Admin" />
+              style="width: 180px; border-radius: 10px; margin-right: 15px;" label="Admin" />
 
             <q-btn type="button" class="btn btn-danger" @click="logout" style="width: 155px; border-radius: 30px;"> <svg
                 xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-walking"
@@ -65,7 +65,8 @@
                         d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                     </svg></i>Contacts</router-link>
               </li>
-              <li class="nav-item list-unstyled" v-if="userType === 'admin' || userType === 'teacher'" style="margin-right: 50px;">
+              <li class="nav-item list-unstyled" v-if="userType === 'admin' || userType === 'teacher'"
+                style="margin-right: 50px;">
                 <router-link to="/StudentDirectoryComponent" class="nav-link text-white"
                   @click="setActiveTab('StudentDirectoryComponent')"
                   :class="{ active: activeTab === 'StudentDirectoryComponent' }"><i class="mx-1"><svg
@@ -87,7 +88,8 @@
                     </svg></i>Compose</router-link>
               </li>
               <li class="nav-item list-unstyled" v-if="userType === 'admin'">
-                <router-link to="/CreateTeacherAccount" class="nav-link text-white" @click="setActiveTab('CreateTeacherAccount')"
+                <router-link to="/CreateTeacherAccount" class="nav-link text-white"
+                  @click="setActiveTab('CreateTeacherAccount')"
                   :class="{ active: activeTab === 'CreateTeacherAccount' }"><i class="mx-2"><svg
                       xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-person-fill-add" viewBox="0 0 16 16">
@@ -96,6 +98,15 @@
                       <path
                         d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4" />
                     </svg></i>Create Teacher Account</router-link>
+              </li>
+              <li class="nav-item list-unstyled" v-if="userType === 'user'">
+                <router-link to="/ViewProfile" class="nav-link text-white" @click="setActiveTab('ViewProfile')"
+                  :class="{ active: activeTab === 'ViewProfile' }"><i class="mx-2"><svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                      <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                    </svg></i>View Profile</router-link>
               </li>
             </q-tabs>
           </div>
@@ -120,7 +131,7 @@
 
                 <q-btn v-if="userType === 'admin'" @click="editAnnouncement(announcement)" color="orange"
                   style="margin: 20px; align-items: center;">Edit</q-btn>
-                <q-btn v-if="userType === 'admin'" @click="deleteAnnouncement(announcement.id)" color="danger"
+                <q-btn v-if="userType === 'admin'" @click="deleteAnnouncement(announcement)" color="danger"
                   style="align-items: center;">Delete</q-btn>
                 <q-separator dark style="margin: 10px;" />
               </div>
@@ -159,7 +170,7 @@
 
       <q-card-actions align="right" style="margin: 20px;">
         <q-btn label="Cancel" color="primary" @click="cancelEdit" style="align-items: center; margin-right: 10px;" />
-        <q-btn label="Save Changes" color="positive" @click="saveChanges" style="align-items: center; width: 150px;" />
+        <q-btn label="Save Changes" color="positive" @click="saveChanges" style="align-items: center; width: 160px;" />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -177,6 +188,7 @@ export default {
       isDeleteConfirmationModalVisible: false,
       announcements: [],
       isEditModalVisible: false,
+      announcementToDeleteId: null,
       editedAnnouncement: {
         id: '',
         content: '',
@@ -204,7 +216,7 @@ export default {
         }
 
         const data = await response.json();
-        console.log('API Response:', data); // Log the response
+        console.log('API Response:', data);
         this.announcements = data;
       } catch (error) {
         console.error('Error fetching announcements', error);
@@ -212,53 +224,51 @@ export default {
     },
 
     deleteAnnouncement(announcement) {
-      this.announcementToDelete = announcement;
+      this.announcementToDeleteId = announcement.id;
       this.isDeleteConfirmationModalVisible = true;
     },
 
     cancelDelete() {
-      this.announcementToDelete = null;
       this.isDeleteConfirmationModalVisible = false;
     },
 
     async confirmDelete() {
       try {
-        if (this.announcementToDelete) {
-          const announcementId = this.announcementToDelete.id;
+        console.log('Deleting announcement with ID:', this.announcementToDeleteId);
+        // Make a request to delete the announcement
+        const response = await fetch('http://localhost/api/announcement.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'deleteAnnouncement',
+            id: this.announcementToDeleteId,
+          }),
+        });
+        console.log('Response:', response);
+        if (response.ok) {
+          // Remove the deleted announcement from the local data
+          this.announcements = this.announcements.filter(a => a.id !== this.announcementToDeleteId);
 
-          // Make an API call to delete the announcement
-          const response = await fetch('http://localhost/api/announcement.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              action: 'deleteAnnouncement',
-              id: announcementId,
-            }),
-          });
-
-          if (response.ok) {
-            // Remove the deleted announcement from the local array
-            this.announcements = this.announcements.filter(a => a.id !== announcementId);
-          } else {
+          // Reset variables
+          this.announcementToDeleteId = null;
+          this.isDeleteConfirmationModalVisible = false;
+        } else {
+          // Handle error response
+          try {
             const errorMessage = await response.json();
-            throw new Error(`Failed to delete announcement. Status: ${response.status}, Message: ${errorMessage}`);
+            console.error('Error deleting announcement:', errorMessage);
+          } catch (error) {
+            console.error('Error deleting announcement', error);
           }
         }
       } catch (error) {
-        console.error('Error deleting announcement:', error);
-        // Handle the error or show an error message
-      } finally {
-        // Reset variables and close the modal
-        this.announcementToDelete = null;
-        this.isDeleteConfirmationModalVisible = false;
+        console.error('Error deleting announcement', error);
       }
     },
 
-
     editAnnouncement(announcement) {
-      console.log('Editing announcement:', announcement);
       this.editedAnnouncement = {
         id: announcement.id,
         content: announcement.content,
@@ -267,7 +277,6 @@ export default {
       this.isEditModalVisible = true;
     },
     cancelEdit() {
-      // Reset the data properties when canceling edit
       this.editedAnnouncement.id = null;
       this.editedAnnouncement.content = '';
       this.editedAnnouncement.date = ''
@@ -289,9 +298,9 @@ export default {
           }),
         });
 
-        // Check if the response is successful
+
         if (response.ok) {
-          // Update the UI by finding and updating the announcement in the local array
+
           const index = this.announcements.findIndex(a => a.id === this.editedAnnouncement.id);
           if (index !== -1) {
             this.announcements.splice(index, 1, {
@@ -301,23 +310,19 @@ export default {
             });
           }
 
-          this.isEditModalVisible = false;  // Close the modal on success
+          this.isEditModalVisible = false;
         } else {
           try {
             const errorMessage = await response.json();
             console.error('Error updating announcement:', errorMessage);
-            // Handle the error or show an error message
           } catch (error) {
             console.error('Error updating announcement', error);
-            // Handle the error or show a generic error message
           }
         }
       } catch (error) {
         console.error('Error updating announcement', error);
-        // Handle the error or show an error message
       }
     }
-
 
   },
   computed: {
@@ -328,11 +333,25 @@ export default {
       return localStorage.getItem('userType')
     },
     computedAnnouncements() {
-      return this.announcements.slice().reverse();
+      return this.announcements.map(announcement => {
+        // Format the date using the Date object
+        const formattedDate = new Date(announcement.date).toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+        });
+
+        // Return the announcement with the formatted date
+        return {
+          ...announcement,
+          date: formattedDate,
+        };
+      }).slice().reverse();
     },
 
   },
 }
+
 </script>
 
 
@@ -411,5 +430,6 @@ img {
   background-color: #595959;
   color: #ebebeb;
   border-radius: 10px;
+
 }
 </style>
